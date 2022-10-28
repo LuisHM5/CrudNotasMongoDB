@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-
+import dotenv from "dotenv";
 // Initializations
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -10,6 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Settings
 app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
+dotenv.config();
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
