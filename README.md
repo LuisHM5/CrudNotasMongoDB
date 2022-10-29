@@ -10,7 +10,7 @@ npm i express connect-flash bcryptjs express-handlebars express-session method-o
 npm i dotenv nodemon handlebars cors npm-check-updates
 ```
 
-create directories
+### create directories
 
 ```
 mkdir src

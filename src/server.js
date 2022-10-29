@@ -2,6 +2,10 @@ import express from "express";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { engine } from "express-handlebars";
+
+//Routes imports
+import router from "./routes/index.routes.js";
 
 // Initializations
 const app = express();
@@ -10,6 +14,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Settings
 app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
+app.engine(
+  ".hbs",
+  engine({
+    defaultLayout: "main",
+    layoutsDir: path.join(app.get("views"), "layouts"),
+    partialsDir: path.join(app.get("views"), "partials"),
+    extname: ".hbs",
+  })
+);
+app.set("view engine", ".hbs");
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
@@ -17,10 +31,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("Hello world");
+  res.render("index");
 });
+app.use(router);
 
 // Static Files
-app.set(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 export default app;
