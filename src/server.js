@@ -7,6 +7,7 @@ import { engine } from "express-handlebars";
 
 //Routes imports
 import router from "./routes/index.routes.js";
+import notesRoutes from "./routes/note.routes.js";
 
 import dotenv from "dotenv";
 
@@ -39,7 +40,9 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 app.use(router);
+app.use(notesRoutes);
 
 // Static Files
 app.use(express.static(path.join(__dirname, "public")));
