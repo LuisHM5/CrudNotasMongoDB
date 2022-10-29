@@ -2,10 +2,13 @@ import express from "express";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+
 import { engine } from "express-handlebars";
 
 //Routes imports
 import router from "./routes/index.routes.js";
+
+import dotenv from "dotenv";
 
 // Initializations
 const app = express();
@@ -14,6 +17,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Settings
 app.set("port", process.env.PORT || 3000);
 app.set("views", path.join(__dirname, "views"));
+
 app.engine(
   ".hbs",
   engine({
@@ -24,6 +28,8 @@ app.engine(
   })
 );
 app.set("view engine", ".hbs");
+
+dotenv.config();
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
