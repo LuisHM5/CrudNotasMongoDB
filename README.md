@@ -1,7 +1,7 @@
 # Commands
 
 ```
-npm i express connect-flash bcryptjs express-handlebars express-session method-override mongoose passport passport-local
+npm i express connect-flash bcryptjs express-handlebars express-session method-override mongoose passport passport-local morgan
 ```
 
 ### Dev

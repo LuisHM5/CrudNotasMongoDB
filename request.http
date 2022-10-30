@@ -1,1 +1,11 @@
 post http://localhost:3000/notes/add
+
+
+POST http://localhost:3000/notes/new-note HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Luis Hernández Macías",
+    "description": "24/01/2001"
+}
+

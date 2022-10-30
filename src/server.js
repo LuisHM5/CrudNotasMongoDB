@@ -1,15 +1,20 @@
 import express from "express";
+import { engine } from "express-handlebars";
+import methodOverride from "method-override";
+import session from "express-session";
+import flash from "connect-flash";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import { engine } from "express-handlebars";
-
 //Routes imports
 import router from "./routes/index.routes.js";
 import notesRoutes from "./routes/note.routes.js";
+import usersRoutes from "./routes/users.routes.js";
 
 import dotenv from "dotenv";
+import morgan from "morgan";
+import cors from "cors";
 
 // Initializations
 const app = express();
@@ -33,16 +38,31 @@ app.set("view engine", ".hbs");
 dotenv.config();
 
 // Middlewares
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride(`_method`));
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
 // Global variables
-
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  next();
+});
 // Routes
 app.get("/", (req, res) => {
   res.render("index");
 });
-
 app.use(router);
 app.use(notesRoutes);
+app.use(usersRoutes);
 
 // Static Files
 app.use(express.static(path.join(__dirname, "public")));
