@@ -3,6 +3,10 @@ import { engine } from "express-handlebars";
 import methodOverride from "method-override";
 import session from "express-session";
 import flash from "connect-flash";
+import passport from "passport";
+//import { localStrategy } from "./config/passport.js";
+import "./config/passport.js";
+// import "./config/initialize.js";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -50,10 +54,17 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
+
 // Global variables
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  res.locals.user = req.user || null;
   next();
 });
 // Routes
