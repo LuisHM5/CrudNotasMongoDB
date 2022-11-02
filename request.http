@@ -1,6 +1,6 @@
 post http://localhost:3000/notes/add
 
-
+###
 POST http://localhost:3000/notes/new-note HTTP/1.1
 Content-Type: application/json
 
@@ -8,4 +8,5 @@ Content-Type: application/json
     "title": "Luis Hernández Macías",
     "description": "24/01/2001"
 }
-
+### 
+DELETE http://localhost:3000/notes/delete/6362a09d15b3bbb17879b2be

@@ -71,6 +71,7 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 app.use(router);
 app.use(notesRoutes);
 app.use(usersRoutes);
