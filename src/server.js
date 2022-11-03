@@ -4,6 +4,7 @@ import methodOverride from "method-override";
 import session from "express-session";
 import flash from "connect-flash";
 import passport from "passport";
+
 //import { localStrategy } from "./config/passport.js";
 import "./config/passport.js";
 // import "./config/initialize.js";
@@ -68,9 +69,6 @@ app.use((req, res, next) => {
   next();
 });
 // Routes
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 app.use(router);
 app.use(notesRoutes);

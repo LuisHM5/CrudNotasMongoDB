@@ -1,5 +1,10 @@
 export const renderIndex = (req, res) => {
-  res.render("index");
+  console.log(req.user);
+  if (req.user) {
+    res.redirect("/notes");
+  } else {
+    res.render("index");
+  }
 };
 
 export const renderAbout = (req, res) => {
