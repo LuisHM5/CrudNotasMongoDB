@@ -8,10 +8,16 @@
             <a href="/notes/edit/{{_id}}"><i class="fas fa-edit"></i></a>
           </h4>
           <p class="note-description">{{description}}</p>
-          <form action="/notes/delete/{{_id}}?_method=DELETE" method="post">
+          <form class="form-delete-{{_id}}" action="/notes/delete/{{_id}}?_method=DELETE" method="post">
             <div class="d-grid gap-2 gap-2 mt-10 mb-2">
               <input type="hidden" name="_method" value="DELETE" />
-              <button type="submit" class="btn btn-danger p-2">Delete</button>
+              <button
+                type="button"
+                class="btn-confirm-delete btn btn-danger p-2"
+                data-id-delete="{{_id}}"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-confirm-delete"
+              >Delete</button>
             </div>
           </form>
         </div>
@@ -23,11 +29,12 @@
   <a href="/notes/add"><i class="fa-solid fa-pencil"></i></a>
 </button>
 
-{{! <div class="modal shown-bs-modal" tabindex="-1">
+{{!-- {{>modal}} --}}
+<div id="modal-confirm-delete" class="modal shown-bs-modal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Deleting Note</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -35,8 +42,19 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button id="submit-delete-note" type="submit" class="btn btn-primary" data-id-delete>Delete</button>
       </div>
     </div>
   </div>
-</div> }}
+
+  <script defer>
+    document.querySelectorAll(".btn-confirm-delete").forEach(el=>{ el.addEventListener("click",e =>{ console.log(
+    document.getElementById("submit-delete-note")); const id =e.target.getAttribute('data-id-delete'); console.log(id);
+    document.getElementById("submit-delete-note").setAttribute('data-id-delete',id); }) })
+  </script>
+
+  <script defer>
+    document.getElementById('submit-delete-note').addEventListener('click', (e) => { const id =
+    e.target.getAttribute('data-id-delete'); document.querySelector(`.form-delete-${id}`).submit(); });
+  </script>
+</div>
