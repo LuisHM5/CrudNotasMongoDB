@@ -3,11 +3,10 @@ import { engine } from "express-handlebars";
 import methodOverride from "method-override";
 import session from "express-session";
 import flash from "connect-flash";
-import passport from "passport";
 
-//import { localStrategy } from "./config/passport.js";
+import passport from "passport";
 import "./config/passport.js";
-// import "./config/initialize.js";
+
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
