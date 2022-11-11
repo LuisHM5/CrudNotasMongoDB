@@ -1,0 +1,10 @@
+Idiomas ES/EN
+Arreglar rutas y enlaces mas intuitivos
+Floating button 
+Confirm antes de salir cerrar sesion
+Confirm antes de borrar notas
+Ordenamientos (asc,desc)
+Boton drop
+Carpetas
+Paginación
+<i class="fa-solid fa-pencil"></i>
