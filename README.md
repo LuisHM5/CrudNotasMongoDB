@@ -32,18 +32,18 @@ mkdir config controllers helpers models public routes views
 
 ![Login](/images/Login.png)
 
-### My notes secction
+#### My notes section
 
 ![mynotes](/images/My_notes.png)
 
-### Create note
+#### Create note
 
 ![create](/images/My_notes.png)
 
-### Edit note
+#### Edit note
 
 ![edit](/images/Edit_note.png)
 
-### Delete note
+#### Delete note
 
 ![delete](images/delete_note.png)
